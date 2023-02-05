@@ -1,5 +1,3 @@
-import sys
-sys.path.append('..')
 from app import convert
 
 def test_convert():
