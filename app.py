@@ -360,7 +360,7 @@ def convert(a):
                     if_param = if_param[1:]
                     if_param = if_param.strip()
                     if_param = "$ " + if_param + " $"
-                    if_param = "\ElsIf{" + if_param + "}"
+                    if_param = "\\ElsIf{" + if_param + "}"
                     final_ans.append(if_param)
                 else:
                     final_ans.append("\\Else")
@@ -590,7 +590,7 @@ def convert(a):
                 for k in range(1, (len(j) - 1)):
                     if j[k] == "=":
                         flag = True
-                        temp = "\\State " + j[0:k] + " $\leftarrow$ " + j[k + 1 :]
+                        temp = "\\State " + j[0:k] + " $\\leftarrow$ " + j[k + 1 :]
                         final_ans.append(temp)
                         break
                 if not flag:
@@ -648,7 +648,7 @@ def convert(a):
         temp = statement.split("=")
         statement = ""
         for x12 in temp:
-            statement = statement + x12 + " $\leftarrow$ "
+            statement = statement + x12 + " $\\leftarrow$ "
 
         if len(statement) >= 14:
             statement = statement[:-14]
@@ -666,7 +666,7 @@ def convert(a):
         strin = ""
 
         for x in temp:
-            strin = strin + x + "\_"
+            strin = strin + x + "\\_"
         if len(strin) >= 2:
             strin = strin[:-2]
 
