@@ -1,0 +1,200 @@
+{% extends "bootstrap/base.html" %} {% block content %} {% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('.static', filename='style.css')}}" />
+{% endblock %}
+
+<div class="container" style="background-color: rgb(199, 206, 209)">
+  <div
+    class="jumbotron text-center"
+    style="
+      background-color: rgb(50, 52, 53);
+      margin-top: 20px;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+      border: solid 3px rgb(9, 10, 10);
+    "
+  >
+    <h1 style="color: white; border-color: beige">Latex Code Generator</h1>
+  </div>
+</div>
+
+<div
+  class="container"
+  style="font-family: monospace; background-color: rgb(142, 154, 160)"
+>
+  <form method="POST" action="{{ url_for('analyse')}}" id="myForm">
+    <div
+      class="heading text-center"
+      style="font-family: Georgia, 'Times New Roman', Times, serif"
+    >
+      <label
+        class="heading"
+        style="font-size: 30px; text-align: center; color: rgb(39, 38, 38)"
+        >Enter Your C++ Function</label
+      >
+    </div>
+    <textarea class="form-control" rows="3" cols="2" name="rawtext"></textarea>
+
+    <div class="button" style="text-align: center; padding: 10px">
+      <input
+        type="submit"
+        value="Submit"
+        class="btn btn-danger"
+        style="
+          color: rgb(248, 243, 243);
+          padding: 10px;
+          margin-top: 15px;
+          margin-bottom: 15px;
+          margin-right: 15px;
+          background-color: rgb(53, 50, 50);
+          border-radius: 8px;
+        "
+      />
+      <input
+        type="button"
+        onclick="myFunction()"
+        value="Clear"
+        class="btn btn-danger"
+        style="
+          color: rgb(248, 243, 243);
+          padding: 10px;
+          margin-top: 15px;
+          margin-bottom: 15px;
+          margin-right: 15px;
+          background-color: rgb(70, 67, 67);
+          border-radius: 8px;
+        "
+      />
+
+      <a
+        href="{{ url_for('index')}}"
+        type="button"
+        class="btn btn-danger"
+        style="
+          padding: 10px;
+          margin-top: 15px;
+          margin-bottom: 15px;
+          color: rgb(248, 243, 243);
+          padding: 10px;
+          margin-top: 15px;
+          margin-bottom: 15px;
+          margin-right: 15px;
+          background-color: rgb(53, 50, 50);
+          border-radius: 8px;
+          font-size: large;
+        "
+      >
+        Reset</a
+      >
+    </div>
+  </form>
+</div>
+
+<br />
+<div class="main">
+  <div class="container" style="background-color: rgb(199, 206, 209)">
+    <div class="card">
+      <div class="card-text">
+        <h5
+          class="text-center"
+          style="
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 20px;
+            font-weight: bold;
+          "
+        >
+          LaTeX Script of pseudocode
+        </h5>
+        <div
+          class="card-footer text-muted"
+          
+          style="background-color: rgb(199, 206, 209); margin-top: 10px"
+          
+        >
+          {% if message == "Input code is not in format as required, please change and retry." %}
+          <div id="editor1">
+            
+            <h3
+              class="output"
+              id="error"
+              style="
+                text-align: left;
+                font-weight: bold;
+                margin-left: 10px;
+                color: rgb(255, 0, 0);
+              "
+            >
+            
+              {{ message }}
+            </h3>
+          </div>
+          {% else %} 
+          <div id="editor2"  contenteditable="true">
+          {% for e in message %}
+          <div>
+            <h6
+              class="output"
+              id="pseudo"
+              style="
+                text-align: left;
+                font-weight: bold;
+                margin-left: 10px;
+                color: rgb(41, 39, 39);
+              "
+            >
+              {{e}}
+            </h6>
+          </div>
+          {% endfor %} 
+        </div>
+        {% endif %}
+
+          <br />
+        </div>
+        <div class="button" style="text-align: leftr; padding: 10px">
+          <button
+            onclick="CopyToClipboard()"
+            class="btn btn-danger"
+            style="
+              padding: 10px;
+              margin-top: 15px;
+              margin-bottom: 15px;
+              color: rgb(248, 243, 243);
+              padding: 10px;
+              margin-top: 15px;
+              margin-bottom: 15px;
+              margin-right: 15px;
+              background-color: rgb(53, 50, 50);
+              
+              text-align: center;
+            "
+          >
+            Copy
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  <!-- {% endblock %} {% block scripts %} {{ super() }} -->
+
+  <script>
+    function myFunction() {
+      document.getElementById("myForm").reset();
+    }
+    function CopyToClipboard() {
+
+var copyBoxElement = document.getElementById('editor2');
+copyBoxElement.contenteditable = true;
+copyBoxElement.focus();
+document.execCommand('selectAll');
+document.execCommand("copy");
+copyBoxElement.contenteditable = false;
+alert("Text has been copied")
+}
+
+  </script>
+
+  {% endblock %}
+</div>
