@@ -206,7 +206,6 @@ def convert(a):
             procedure_list.pop()
             a[0] = a[0][1:]
             continue
-        # print(a[0])
         if len(a[0]) >= 2:
             # Removing single line comments
             if a[0][0] == "/" and a[0][1] == "/":
@@ -294,17 +293,12 @@ def convert(a):
                 a[0] = a[0][2:]
                 if_param = ""
                 count_para = 0
-                # for x in a:
-                #     print(x)
-                # break
 
                 while len(a) > 0:
                     check = False
                     a[0] = a[0].strip()
 
                     for i in range(0, len(a[0])):
-                        # print(a[0][i])
-                        # print(a[0])
                         if a[0][i] == "(":
                             count_para = count_para + 1
                         if a[0][i] == ")":
@@ -608,7 +602,6 @@ def convert(a):
             continue
 
         variable = ["vector", "list", "stack", "map", "queue", "priority_queue"]
-        # print(a[0])
         exist = False
         for var in variable:
             if len(a[0]) >= len(var):
@@ -636,7 +629,6 @@ def convert(a):
                     for i in temp:
                         i = i.strip()
                         strin = "\\State Define a " + var + " " + i
-                        # print(strin)
                         final_ans.append(strin)
                     a.pop(0)
                     exist = True
@@ -707,11 +699,6 @@ def convert(a):
     #             strin = strin[:-5]
 
     #         final_ans[i]=strin
-
-    for x in a:
-        print(x)
-    for x in final_ans:
-        print(x)
 
     return final_ans
 
